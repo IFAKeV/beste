@@ -1,0 +1,9 @@
+# Datenbanken
+ifak.db
+ifak.json
+
+# Ignore-Ordner
+ignore/
+
+# macOS
+.DS_Store
