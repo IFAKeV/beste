@@ -1,4 +1,4 @@
-let data = { persons: [], facilities: [], locations: [] };
+let data = { persons: [], facilities: [], locations: [], departments: [] };
 
 // Liste von Synonymen und Übersetzungen für "Beste"
 const word1List = [
@@ -18,6 +18,9 @@ async function loadData() {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         data = await response.json();
+        if (!data.departments) {
+            data.departments = [];
+        }
         console.log("Data loaded successfully:", data);
         renderData();
     } catch (error) {
@@ -166,7 +169,12 @@ function renderCards(filteredData, languageFilter = null, languageLevelFilter = 
                 details += phones.join(' / ') + '<br>';
             }
 
-            card = createCard('person', item.name, details, item);
+            if (item.department) {
+                const deptName = getDepartmentName(item.department);
+                details += `<span class="department-label">${deptName}</span>`;
+            }
+
+            card = createCard('person', item.name, details, item, item.department);
         } else if (item.hasOwnProperty('location')) {
             let details = '';
 
@@ -210,13 +218,17 @@ function renderCards(filteredData, languageFilter = null, languageLevelFilter = 
     updateFilterDisplay(languageFilter, languageLevelFilter);
 }
 
-function createCard(type, title, details, fullData) {
+function createCard(type, title, details, fullData, departmentId = null) {
     const card = document.createElement('div');
     card.className = `card ${type}-card`; // Hier wird die Typ-spezifische Klasse hinzugefügt
     card.innerHTML = `
         <div class="card-title">${title}</div>
         <div class="card-details">${details}</div>
     `;
+    if (type === 'person' && departmentId) {
+        const color = getDepartmentColor(departmentId);
+        card.style.borderRight = `8px solid ${color}`;
+    }
     card.addEventListener('click', () => showDetails(type, fullData));
     return card;
 }
@@ -319,18 +331,22 @@ function showDetails(type, itemData) {
 			    }
 			
 			    // Nur hinzufügen, wenn Sprachen vorhanden sind
-			    if (itemData.languages && itemData.languages.length > 0) {
-			        detailsHtml += `<p>Sprachen:</p>
-			        <ul class="languages">
-			            ${itemData.languages.map(lang => `
-			                <li>
-			                    <a href="#" data-filter="language" data-value="${lang.name}">${lang.name}</a>: 
-			                    <a href="#" data-filter="language-level" data-value="${lang.name}-${lang.level}" class="language-level ${lang.certified ? 'certified' : ''}">${lang.level}</a>
-			                    ${lang.certified ? ' (Zertifiziert)' : ''}
-			                </li>
-			            `).join('')}
-			        </ul>`;
-			    }
+                            if (itemData.languages && itemData.languages.length > 0) {
+                                detailsHtml += `<p>Sprachen:</p>
+                                <ul class="languages">
+                                    ${itemData.languages.map(lang => `
+                                        <li>
+                                            <a href="#" data-filter="language" data-value="${lang.name}">${lang.name}</a>:
+                                            <a href="#" data-filter="language-level" data-value="${lang.name}-${lang.level}" class="language-level ${lang.certified ? 'certified' : ''}">${lang.level}</a>
+                                            ${lang.certified ? ' (Zertifiziert)' : ''}
+                                        </li>
+                                    `).join('')}
+                                </ul>`;
+                            }
+
+                            if (itemData.department) {
+                                detailsHtml += `<p>Fachbereich: ${getDepartmentName(itemData.department)}</p>`;
+                            }
 			
             break;
             case 'facility':
@@ -441,6 +457,12 @@ function showDetails(type, itemData) {
     content.classList.remove('person-modal', 'facility-modal', 'location-modal');
     if (type === 'person') {
         content.classList.add('person-modal');
+        if (itemData.department) {
+            const color = getDepartmentColor(itemData.department);
+            content.style.borderRight = `8px solid ${color}`;
+        } else {
+            content.style.borderRight = '';
+        }
     } else if (type === 'facility') {
         content.classList.add('facility-modal');
     } else if (type === 'location') {
@@ -493,6 +515,14 @@ function getLocationName(id) {
 
 function getFacilityName(id) {
     return data.facilities.find(f => f.id === id)?.name || 'Unbekannt';
+}
+
+function getDepartmentName(id) {
+    return data.departments.find(d => d.id === id)?.name || 'Unbekannt';
+}
+
+function getDepartmentColor(id) {
+    return data.departments.find(d => d.id === id)?.color || '#888';
 }
 
 function getPersonsInFacility(facilityId) {
