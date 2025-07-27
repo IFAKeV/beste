@@ -76,6 +76,7 @@ ul.languages {
     padding: 15px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     transition: transform 0.3s ease;
+    border-right: 8px solid transparent;
 }
 
 .card:hover {
@@ -146,6 +147,11 @@ ul.languages {
 
 .certified {
     border: 1px solid green;
+}
+
+.department-label {
+    font-weight: bold;
+    float: right;
 }
 
 /* Anzeige des aktuellen Filters */
