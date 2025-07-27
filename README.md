@@ -15,6 +15,7 @@ Das Projekt stellt ein webbasiertes Adressbuch der „IFAK Familie“ bereit. HT
 | `fpdf.php` und `font/`    | Eingebundene PDF-Bibliothek und Schriftdateien.                                                                                        |
 | `README.md`, `roadmap.md` | Sehr knappes Projektintro und offene Punkte.                                                                                           |
 | `.gitignore`              | Schließt Datenbankdateien und lokale Artefakte aus dem Repository aus.                                                                 |
+| `beste`                   | Enthält den Adminteil des Adressbuchs. `employees.php` ist hier der Einstiegspunkt. Gepflegt und editiert wird die ifak.db, welche anschließend in die ifak.json konvertiert wird, da JS die besser lesen kann.                                                                                     |
 
 
 ## Abläufe im Detail
