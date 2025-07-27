@@ -3,7 +3,6 @@
 	else $main = "home";
 	if($main=="phonelist" || $main=="vcf" || $main=="vcf21" || $main=="list" || $main=="fritzboxxml") {
 		include_once "init.php";
-		include_once "functions.php";
 		include $main.'.php';
 	}
 ?>
