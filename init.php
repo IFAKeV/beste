@@ -13,11 +13,18 @@ while ($row = $results->fetchArray()) {
 // Einrichtungen
 $results = $db->query("SELECT * FROM Facilities ORDER BY Facility COLLATE NOCASE ASC");
 while ($row = $results->fetchArray()) {
-	$einrichtungen[$row["FacilityID"]] = $row["Facility"];
-	$einrichtungenlang[$row["FacilityID"]] = $row["Long"];
-	$url[$row["FacilityID"]] = $row["URL"];
-	if($row["URL"]) $einrichtungenlangggfmiturl[$row["FacilityID"]] = '<a target="_blank" href="'.$row["URL"].'">'.$row["Long"].'</a>';
-	else $einrichtungenlangggfmiturl[$row["FacilityID"]] = $row["Long"];
+        $einrichtungen[$row["FacilityID"]] = $row["Facility"];
+        $einrichtungenlang[$row["FacilityID"]] = $row["Long"];
+        $url[$row["FacilityID"]] = $row["URL"];
+        if($row["URL"]) $einrichtungenlangggfmiturl[$row["FacilityID"]] = '<a target="_blank" href="'.$row["URL"].'">'.$row["Long"].'</a>';
+        else $einrichtungenlangggfmiturl[$row["FacilityID"]] = $row["Long"];
+        $facilityDepartment[$row['FacilityID']] = $row['DepartmentID'];
+}
+
+// Departments
+$results = $db->query("SELECT * FROM Departments ORDER BY Department COLLATE NOCASE ASC");
+while ($row = $results->fetchArray()) {
+        $departments[$row['DepartmentID']] = ['name'=>$row['Department'], 'color'=>$row['color']];
 }
 // Locations
 $results = $db->query("SELECT * FROM Locations ORDER BY Location COLLATE NOCASE ASC");

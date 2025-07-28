@@ -206,8 +206,12 @@ function renderCards(filteredData, languageFilter = null, languageLevelFilter = 
             if (phones.length > 0) {
                 details += phones.join(' / ') + '<br>';
             }
+            if (item.department) {
+                const deptName = getDepartmentName(item.department);
+                details += `<span class="department-label">${deptName}</span>`;
+            }
             details += `Standort: ${getLocationName(item.location)}`;
-            card = createCard('facility', item.name, details, item);
+            card = createCard('facility', item.name, details, item, item.department);
 //             card = createCard('facility', item.name, , item);
         } else {
             card = createCard('location', item.name, item.address, item);
@@ -220,12 +224,12 @@ function renderCards(filteredData, languageFilter = null, languageLevelFilter = 
 
 function createCard(type, title, details, fullData, departmentId = null) {
     const card = document.createElement('div');
-    card.className = `card ${type}-card`; // Hier wird die Typ-spezifische Klasse hinzugefügt
+    card.className = `card ${type}-card`;
     card.innerHTML = `
         <div class="card-title">${title}</div>
         <div class="card-details">${details}</div>
     `;
-    if (type === 'person' && departmentId) {
+    if (departmentId) {
         const color = getDepartmentColor(departmentId);
         card.style.borderRight = `8px solid ${color}`;
     }
@@ -465,8 +469,15 @@ function showDetails(type, itemData) {
         }
     } else if (type === 'facility') {
         content.classList.add('facility-modal');
+        if (itemData.department) {
+            const color = getDepartmentColor(itemData.department);
+            content.style.borderRight = `8px solid ${color}`;
+        } else {
+            content.style.borderRight = '';
+        }
     } else if (type === 'location') {
         content.classList.add('location-modal');
+        content.style.borderRight = '';
     }
 
     

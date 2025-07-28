@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $fax = $_POST['Fax'] ?? '';
     $mail = $_POST['Mail'] ?? '';
     $url = $_POST['URL'] ?? '';
+    $departmentID = $_POST['DepartmentID'] ?? '';
 
     // Eingabedaten validieren
     if (empty($locationID) || empty($short) || empty($facility) || empty($long) || empty($sortedLong)) {
@@ -20,10 +21,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         try {
             $stmt = $db->prepare("
-                INSERT INTO Facilities (LocationID, Short, Facility, Long, SortedLong, Phone, Mobile, Fax, Mail, URL) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                INSERT INTO Facilities (LocationID, Short, Facility, Long, SortedLong, Phone, Mobile, Fax, Mail, URL, DepartmentID) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ");
-            $stmt->execute([$locationID, $short, $facility, $long, $sortedLong, $phone, $mobile, $fax, $mail, $url]);
+            $stmt->execute([$locationID, $short, $facility, $long, $sortedLong, $phone, $mobile, $fax, $mail, $url, $departmentID]);
             header('Location: facilities.php');
             exit;
         } catch (PDOException $e) {
@@ -31,12 +32,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 } else {
-    // Standorte abrufen, um die Select-Liste zu füllen
+    // Standorte und Fachbereiche abrufen
     try {
         $stmt = $db->query('SELECT LocationID, Location FROM Locations ORDER BY SortedLong COLLATE NOCASE ASC');
         $locations = $stmt->fetchAll();
+        $stmt = $db->query('SELECT DepartmentID, Department FROM Departments ORDER BY SortedLong COLLATE NOCASE ASC');
+        $departments = $stmt->fetchAll();
     } catch (PDOException $e) {
-        echo "Fehler beim Abrufen der Standorte: " . $e->getMessage();
+        echo "Fehler beim Abrufen der Standorte oder Fachbereiche: " . $e->getMessage();
         exit;
     }
     ?>
@@ -68,6 +71,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <label for="SortedLong">Sortierung:</label><br>
             <input type="text" name="SortedLong" id="SortedLong" required><br><br>
+
+            <label for="DepartmentID">Fachbereich:</label><br>
+            <select name="DepartmentID" id="DepartmentID" required>
+                <option value="">-- Fachbereich auswählen --</option>
+                <?php foreach ($departments as $department): ?>
+                    <option value="<?= htmlspecialchars($department['DepartmentID']) ?>">
+                        <?= htmlspecialchars($department['Department']) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select><br><br>
 
             <label for="Phone">Telefon:</label><br>
             <input type="text" name="Phone" id="Phone"><br><br>

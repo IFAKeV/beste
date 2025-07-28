@@ -67,6 +67,7 @@ CREATE TABLE IF NOT EXISTS "Facilities" (
 	"Mail"	TEXT NOT NULL,
 	"URL"	TEXT NOT NULL,
 	"DepartmentID"	INTEGER,
+        FOREIGN KEY("DepartmentID") REFERENCES "Departments"("DepartmentID"),
 	PRIMARY KEY("FacilityID" AUTOINCREMENT)
 );
 CREATE TABLE IF NOT EXISTS "Roles" (
