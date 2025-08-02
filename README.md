@@ -2,7 +2,7 @@
 
 Das Projekt stellt ein webbasiertes Adressbuch der „IFAK Familie“ bereit. HTML/PHP erzeugen die Oberfläche, während JavaScript die Anzeige und Filterung der Daten übernimmt.
 
-##Wichtige Dateien und Aufgaben
+## Wichtige Dateien und Aufgaben
 
 | Datei/Verzeichnis         | Zweck                                                                                                                                  |
 | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
@@ -14,6 +14,7 @@ Das Projekt stellt ein webbasiertes Adressbuch der „IFAK Familie“ bereit. HT
 | `list.php`                | Erstellt eine allgemeine Mitarbeitendenliste als PDF mit FPDF.                                                                         |
 | `fpdf.php` und `font/`    | Eingebundene PDF-Bibliothek und Schriftdateien.                                                                                        |
 | `README.md`, `roadmap.md` | Sehr knappes Projektintro und offene Punkte.                                                                                           |
+| `vz.php`                  | Über die vz.php können Ausgabezettel für die Passwörter der Mitarbeitenden und eine Vereinbarung zur überlassung von Arbeitsmitteln erstellt werden.                                                                         |
 | `.gitignore`              | Schließt Datenbankdateien und lokale Artefakte aus dem Repository aus.                                                                 |
 
 

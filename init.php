@@ -41,4 +41,10 @@ while ($number = $result->fetchArray(SQLITE3_ASSOC)) {
 // 	$overview = $number['count(*)'].' KollegInnen und '.$sprachanzahl.' Sprachen';
 	$overview = $sprachanzahl.' Sprachen';
 }
+
+function umlauteumwandeln($str) {
+	$tempstr = Array("Ä" => "AE", "Ö" => "OE", "Ü" => "UE", "ä" => "ae", "ö" => "oe", "ü" => "ue", "ß" => "ss"); 
+	return strtr($str, $tempstr);
+}
+
 ?>

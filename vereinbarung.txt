@@ -1,0 +1,125 @@
+§2 Geltungsbereich
+
+Diese Vereinbarung regelt die Überlassung betrieblicher Arbeitsmittel an Arbeitnehmerinnen und Arbeitnehmer des IFAK e.V. Sie ergänzt bestehende arbeitsvertragliche Regelungen und legt Rechte und Pflichten im Umgang mit bereitgestellter Technik verbindlich fest.
+
+§3 Nutzungsumfang
+
+Das Arbeitsmittel ist ausschließlich im Rahmen der dienstlichen Tätigkeit für den Arbeitgeber zu verwenden. Eine Nutzung zu privaten Zwecken ist nicht gestattet, es sei denn, dies wurde ausdrücklich und schriftlich genehmigt. Die Arbeitnehmerin verpflichtet sich, das Arbeitsmittel nur im Rahmen der ihr übertragenen Aufgaben bestimmungsgemäß einzusetzen.
+
+Der Zugriff auf dienstliche Daten und Anwendungen hat grundsätzlich über die bereitgestellten Arbeitsmittel zu erfolgen. Die Nutzung anderer, nicht autorisierter Geräte zu dienstlichen Zwecken ist unzulässig.
+
+
+§4 Haftung
+
+Die Arbeitnehmerin ist verpflichtet, das Arbeitsmittel pfleglich zu behandeln und Schäden oder Funktionsstörungen unverzüglich zu melden. Schäden, die auf normalen Verschleiß zurückzuführen sind, werden vom Arbeitgeber übernommen. Reparaturen dürfen ausschließlich durch vom Arbeitgeber autorisierte Dienstleister erfolgen.
+
+Für Schäden, die durch vorsätzliche oder grob fahrlässige Nutzung entstehen, haftet die Arbeitnehmerin im vollen Umfang. Bei einfacher Fahrlässigkeit ist die Arbeitnehmerin anteilig schadensersatzpflichtig, abhängig vom Grad des Verschuldens. Die Beurteilung erfolgt durch den Arbeitgeber unter Berücksichtigung der betrieblichen Rahmenbedingungen.
+
+Bei Verlust oder mutwilliger Beschädigung haftet die Arbeitnehmerin für den entstandenen Schaden einschließlich aller Folgekosten, soweit keine anderweitige vertragliche Regelung besteht.
+
+
+§5 Überlassung an Dritte
+
+Das Arbeitsmittel darf nicht an Dritte weitergegeben werden. Auch innerhalb des Haushalts oder des engeren privaten Umfelds ist eine Nutzung durch andere Personen untersagt. Eine unbeaufsichtigte Nutzung ist durch geeignete Maßnahmen – wie Passwortschutz oder physische Sicherung – zu verhindern.
+
+
+§6 Mangelfreie Übergabe
+
+Die Arbeitnehmerin bestätigt mit ihrer Unterschrift unter dieser Vereinbarung, dass sie das Arbeitsmittel in mangelfreiem, betriebsbereitem Zustand übernommen hat. Offensichtliche Mängel sind bei Übergabe schriftlich festzuhalten. Nachträglich festgestellte verdeckte Mängel sind dem Arbeitgeber unverzüglich mitzuteilen.
+
+
+§7 Rückgabe
+
+Die Rückgabe des Arbeitsmittels hat spätestens am letzten Arbeitstag oder auf Anforderung durch den Arbeitgeber zu erfolgen – vollständig, mit sämtlichem Zubehör und in einem ordentlichen Zustand. Dazu zählen auch Netzteile, Kabel, Taschen, Benutzerunterlagen, ggf. SIM-Karten oder Speichermedien.
+
+Eine Rückgabe hat ebenfalls zu erfolgen:
+- bei längerfristiger Freistellung von der Arbeit,
+- im Fall der Arbeitsunfähigkeit über einen längeren Zeitraum,
+- bei Anordnung durch den Arbeitgeber im Rahmen von Vertretungs- oder Aussetzungsregelungen.
+
+Die Rückgabe erfolgt an die Geschäftsstelle oder eine benannte Person des Arbeitgebers. Auf Wunsch kann ein Rückgabeprotokoll erstellt werden.
+
+
+§8 Zurückbehaltungsrecht
+
+Ein Zurückbehaltungsrecht an überlassenen Arbeitsmitteln ist ausgeschlossen. Die Arbeitnehmerin verpflichtet sich, das Arbeitsmittel auch bei offenen Ansprüchen gegen den Arbeitgeber umgehend zurückzugeben.
+
+
+§9 Zugangsdaten und Konfigurationen
+
+Die Arbeitnehmerin verpflichtet sich, alle Zugangsdaten, Konfigurationsinformationen und individuellen Einstellungen, die mit dem Arbeitsmittel verknüpft sind, vertraulich zu behandeln. Vor Rückgabe des Geräts sind – soweit technisch möglich – sämtliche personenbezogenen oder individuell konfigurierten Inhalte zu entfernen oder in den Werkszustand zurückzusetzen.
+
+Unbefugte Änderungen an sicherheitsrelevanten Einstellungen oder Netzwerkverbindungen sind untersagt.
+
+
+§10 Datenschutz und Datensicherheit
+
+Bei der Nutzung des Arbeitsmittels sind die gesetzlichen Datenschutzvorgaben strikt zu beachten. Der Zugriff auf personenbezogene Daten hat ausschließlich über sichere und genehmigte Verbindungen zu erfolgen.
+
+Die Speicherung dienstlicher Daten auf privaten Geräten, Medien oder in unkontrollierten Cloud-Diensten ist untersagt. Sicherheitsvorkehrungen wie Festplattenverschlüsselung, Virenschutz und Sperrbildschirm sind verpflichtend zu aktivieren.
+
+
+§11 Verlust oder Diebstahl
+
+Im Fall von Verlust oder Diebstahl ist der Arbeitgeber unverzüglich zu informieren. Die Arbeitnehmerin ist verpflichtet, unverzüglich eine Anzeige bei der zuständigen Polizeidienststelle zu erstatten und dem Arbeitgeber eine Kopie dieser Anzeige auszuhändigen. Die Entscheidung über Ersatz oder Haftung erfolgt durch den Arbeitgeber auf Grundlage der Umstände des Einzelfalls.
+
+
+§12 Nutzung außerhalb der Arbeitszeit
+
+Eine Nutzung außerhalb der üblichen Arbeitszeiten oder außerhalb des zugewiesenen Arbeitsortes ist nur mit Zustimmung des Arbeitgebers zulässig. Dies gilt insbesondere für Auslandsreisen oder den Einsatz im privaten Umfeld. Eine vorherige schriftliche Genehmigung ist zwingend erforderlich, wenn das Arbeitsmittel länderübergreifend genutzt werden soll.
+
+
+§13 Technische Betreuung und Wartung
+
+Updates, Sicherheitsaktualisierungen und Wartungsmaßnahmen sind gemäß den Vorgaben des Arbeitgebers durchzuführen. Die Arbeitnehmerin verpflichtet sich, das Arbeitsmittel regelmäßig mit dem Unternehmensnetzwerk zu verbinden, um automatische Aktualisierungen und Sicherungen zu ermöglichen.
+
+Fehlerhafte oder ungewöhnliche Verhaltensweisen des Arbeitsmittels sind unverzüglich zu melden. Eingriffe in die Hardware oder das Betriebssystem durch unautorisierte Dritte sind unzulässig.
+
+
+§14 Regelung bei längerer Abwesenheit
+
+Bei voraussichtlich mehr als vierwöchiger Abwesenheit, z. B. durch Elternzeit, Pflegezeit, Sabbatical oder Langzeiterkrankung, kann der Arbeitgeber die Rückgabe des Arbeitsmittels verlangen. Alternativ kann eine sichere Lagerung in Absprache mit dem Arbeitgeber vereinbart werden.
+
+
+§15 Nutzung dienstlicher Kommunikationsmittel
+
+Die Nutzung des Arbeitsmittels für dienstliche Kommunikation hat unter Beachtung der arbeitsrechtlichen, datenschutzrechtlichen und betrieblichen Regelungen zu erfolgen. Dazu zählen insbesondere E-Mail, Messenger, Kalender und Kollaborationstools. Der Arbeitgeber kann bestimmte Kommunikationskanäle verbindlich vorgeben.
+
+
+§16 Sicherheit bei mobiler Nutzung
+
+Bei Nutzung des Arbeitsmittels außerhalb der Arbeitsstätte sind geeignete Schutzmaßnahmen zu ergreifen. Hierzu gehören insbesondere die Aktivierung automatischer Bildschirmsperren, Transport in gepolsterten Taschen sowie die Vermeidung öffentlicher WLANs. Der Arbeitgeber kann ergänzende Richtlinien zur mobilen Sicherheit erlassen.
+
+
+§17 Inventarisierung
+
+Das überlassene Arbeitsmittel ist Teil des betrieblichen Inventars. Es ist mit einer eindeutigen Kennzeichnung zu versehen. Änderungen oder Verlust der Kennzeichnung sind dem Arbeitgeber mitzuteilen. Der Arbeitgeber führt eine Dokumentation der ausgegebenen Arbeitsmittel.
+
+
+§18 Ergänzende Bestimmungen
+
+Soweit für bestimmte Arbeitsmittel bereits individuelle Nutzungs- oder Datenschutzvereinbarungen bestehen, gehen diese den Bestimmungen dieser Vereinbarung im Zweifel vor. Diese Vereinbarung bleibt im Übrigen unberührt gültig.
+
+Änderungen oder Ergänzungen dieser Vereinbarung bedürfen der Schriftform. Dies gilt auch für einen etwaigen Verzicht auf das Schriftformerfordernis. Mündliche Nebenabreden bestehen nicht. Ergänzend gelten die gesetzlichen Vorschriften.
+
+Sollte eine Bestimmung dieser Vereinbarung ganz oder teilweise unwirksam sein, bleibt die Gültigkeit der übrigen Regelungen hiervon unberührt. Die Vertragsparteien verpflichten sich in einem solchen Fall, eine Regelung zu vereinbaren, die dem wirtschaftlichen Zweck der unwirksamen Bestimmung am nächsten kommt.
+
+Ergänzend gelten die gesetzlichen Vorschriften des Bürgerlichen Gesetzbuchs (BGB).
+
+
+Anhang: Rückgabe-Checkliste
+
+Vor der Rückgabe des Arbeitsmittels ist sicherzustellen, dass:
+- alle dienstlichen Daten gesichert wurden,
+- persönliche Daten und private Inhalte entfernt wurden,
+- Benutzerkonten abgemeldet wurden,
+- Gerätesperren (z. B. Wischgesten, PINs, Biometrische Prüfungen wie Fingerabdrücke) deaktiviert sind,
+- sämtliches Zubehör (z. B. Netzteile, Taschen, SIM-Karten) beigefügt ist.
+
+Die Rückgabe wird durch die zuständige Stelle geprüft und kann protokolliert werden.
+
+Rückgabe am:
+
+Vollständig:
+
+Geprüft:

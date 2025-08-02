@@ -271,6 +271,69 @@ footer .exports {
     width: auto;
 }
 
+.ifak-formular-container {
+  margin-top: 2rem; /* oder mehr, je nach Header-Höhe */
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ifak-formular {
+  flex: 1 1 50%;
+  max-width: 50%;
+  min-width: 320px;
+  background: #13385c;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.ifak-formular h1 {
+  color: #fff;
+}
+
+.form-block {
+  margin-bottom: 3rem;
+}
+
+.ifak-formular h3 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.ifak-formular label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.ifak-formular input[type="text"],
+.ifak-formular input[type="email"],
+.ifak-formular input[type="password"] {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.1rem;
+  box-sizing: border-box;
+  font-size: 2rem;
+  border: none;
+  border-radius: 4px;
+}
+
+.ifak-formular button {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  background: #58a6ff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.ifak-formular button:hover {
+  background: #3c90df;
+}
+
 /* Responsive Design für mobile Geräte */
 @media (max-width: 768px) {
     .header {

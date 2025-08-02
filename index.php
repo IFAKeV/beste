@@ -1,7 +1,7 @@
 <?php
 	if (isset($_GET['main'])) $main=$_GET['main'];
 	else $main = "home";
-	if($main=="phonelist" || $main=="vcf" || $main=="vcf21" || $main=="list" || $main=="fritzboxxml") {
+	if($main=="phonelist" || $main=="vcf" || $main=="vcf21" || $main=="list" || $main=="fritzboxxml" || $main=="vereinbarung_pdf" || $main=="zugangsdaten_pdf") {
 		include_once "init.php";
 		include $main.'.php';
 	}
@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bestes IFAK Adressbuch</title>
     <link rel="shortcut icon" href="favicon.ico">
-    <link rel="stylesheet" href="styles.css?v=14">
+    <link rel="stylesheet" href="styles.css?v=16">
 </head>
 <body>
     <header>
@@ -38,6 +38,13 @@
             </div>
         </div>
     </header>
+
+<?php
+	if($main=="vz") {
+		include_once "init.php";
+		include $main.'.php';
+	}
+?>
 
     <!-- Hauptinhalt -->
     <div class="content">
@@ -66,7 +73,7 @@
 	            ?>
 	        </div>
 	        <div class="right">
-	            Export: <a href="<?php echo $_SERVER['PHP_SELF']; ?>?main=phonelist">Telefonliste</a> / <a href="<?php echo $_SERVER['PHP_SELF']; ?>?main=phonelist&amp;show=all">Telefonliste (lang)</a> / <a href="<?php echo $_SERVER['PHP_SELF']; ?>?main=list">Mitarbeitendenliste</a>
+	            Export: <a href="<?php echo $_SERVER['PHP_SELF']; ?>?main=phonelist">Telefonliste</a> / <a href="<?php echo $_SERVER['PHP_SELF']; ?>?main=phonelist&amp;show=all">Telefonliste (lang)</a> / <a href="<?php echo $_SERVER['PHP_SELF']; ?>?main=list">Mitarbeitendenliste</a> : <a href="<?php echo $_SERVER['PHP_SELF']; ?>?main=vz">VZ</a>
 	        </div>
 	    </div>
         <div class="logo-container">
