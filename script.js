@@ -313,7 +313,7 @@ function showDetails(type, itemData) {
                 facilitiesHtml = '<p>Einrichtungen: Keine verknüpften Einrichtungen</p>';
             }
 
-			    detailsHtml = `<h2>${itemData.name}</h2>${facilitiesHtml}`;
+                            detailsHtml = `<a href="index.php?main=vz&EmployeeID=${itemData.id}" class="vz-link">VZ</a><h2>${itemData.name}</h2>${facilitiesHtml}`;
 						
 			    // Nur hinzufügen, wenn Telefon vorhanden ist
 			    if (itemData.phone) {
