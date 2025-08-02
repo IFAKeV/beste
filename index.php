@@ -84,7 +84,7 @@
 	        <a target="_blank" href="https://intercare-pflege.de"><img src="img/InterCare-Logo.png" alt="Intercare GmbH" class="company-logo"></a>
 		</div>
     </footer>
-    <script src="script.js?v=8"></script>
+    <script src="script.js?v=9"></script>
     <script>
         // Fokussiert das Suchfeld, sobald die Seite geladen ist
         document.addEventListener('DOMContentLoaded', function() {
