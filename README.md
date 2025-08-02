@@ -14,7 +14,7 @@ Das Projekt stellt ein webbasiertes Adressbuch der „IFAK Familie“ bereit. HT
 | `list.php`                | Erstellt eine allgemeine Mitarbeitendenliste als PDF mit FPDF.                                                                         |
 | `fpdf.php` und `font/`    | Eingebundene PDF-Bibliothek und Schriftdateien.                                                                                        |
 | `README.md`, `roadmap.md` | Sehr knappes Projektintro und offene Punkte.                                                                                           |
-| `vz.php`                  | Über die vz.php können Ausgabezettel für die Passwörter der Mitarbeitenden und eine Vereinbarung zur überlassung von Arbeitsmitteln erstellt werden.                                                                         |
+| `vz.php`                  | Über die vz.php können Ausgabezettel für die Passwörter der Mitarbeitenden und eine Vereinbarung zur überlassung von Arbeitsmitteln erstellt werden. Optional lassen sich SIM-Karten mit Rufnummer und PIN erfassen und ins Adressbuch exportieren. |
 | `.gitignore`              | Schließt Datenbankdateien und lokale Artefakte aus dem Repository aus.                                                                 |
 
 

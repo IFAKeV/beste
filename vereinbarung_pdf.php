@@ -134,6 +134,17 @@ for ($i = 0; $i <= 4; $i++) {
     }
 }
 
+if (!empty($_POST['sim_phone'])) {
+    $pdf->Ln(5);
+    $pdf->SetFont('DejaVu','B',10);
+    $pdf->Cell(0,6,'SIM-Karte:',0,1);
+    $pdf->SetFont('DejaVu','',10);
+    $pdf->Cell(46,6,'Rufnummer:',0,0);
+    $pdf->Cell(0,6,$_POST['sim_phone'],0,1);
+    $pdf->Cell(46,6,'PIN:',0,0);
+    $pdf->Cell(0,6,$_POST['sim_pin'] ?? '',0,1);
+}
+
 $pdf->Ln(20);
 $pdf->Cell(100,4,'Bochum, den '.date("d.m.Y"),0,0);
 $pdf->Cell(60,4,'',0,1);
@@ -147,6 +158,26 @@ $pdf->AddPage();
 $pdf->SetLeftMargin(10);
 
 $pdf->PrintChapter('vereinbarung.txt');
+
+$simExport = !empty($_POST['sim_export']);
+if ($simExport && !empty($_POST['sim_phone'])) {
+    $entry = [
+        'name' => $_POST['Name'] ?? '',
+        'phone' => $_POST['sim_phone'],
+        'pin' => $_POST['sim_pin'] ?? ''
+    ];
+    $jsonFile = 'simcards.json';
+    $jsonData = [];
+    if (file_exists($jsonFile)) {
+        $content = file_get_contents($jsonFile);
+        $jsonData = json_decode($content, true);
+        if (!is_array($jsonData)) {
+            $jsonData = [];
+        }
+    }
+    $jsonData[] = $entry;
+    file_put_contents($jsonFile, json_encode($jsonData, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+}
 
 $name = $_POST['Name'] ?? '';
 $dateiname = date("Ymd")."-Vereinbarung_Arbeitsmittel-".preg_replace('/[^a-zA-Z0-9]/','_', strtolower(umlauteumwandeln($name))).'.pdf';
