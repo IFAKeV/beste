@@ -140,22 +140,48 @@ if ($EmployeeID !== '') {
 					<label for="kennzeichnung">Kennzeichnung:</label>
 					<input type="text" name="kennzeichnung[]" placeholder="Kennzeichnung">
 	    		</div>
-		    </div>
-		    </div>
+                    </div>
+                    </div>
+                    <div class="form-block">
+                        <div class="form-row">
+                                <input type="checkbox" id="sim_check" name="sim_check" onclick="toggleSimFields()">
+                                <label for="sim_check">mit SIM-Karte</label>
+                        </div>
+                        <div id="sim_fields" style="display:none;">
+                                <div class="form-row">
+                                        <label for="sim_phone">Telefonnummer:</label>
+                                        <input type="text" id="sim_phone" name="sim_phone">
+                                </div>
+                                <div class="form-row">
+                                        <label for="sim_pin">PIN:</label>
+                                        <input type="text" id="sim_pin" name="sim_pin">
+                                </div>
+                                <div class="form-row">
+                                        <input type="checkbox" id="sim_export" name="sim_export" value="1">
+                                        <label for="sim_export">In Adressbuch übernehmen</label>
+                                </div>
+                        </div>
+                    </div>
 <div style="display: flex; justify-content: space-between; gap: 1rem; margin-top: 1rem;">
     <button type="button" onclick="addArbeitsmittel()">+ weiteres Arbeitsmittel</button>
     <button type="submit">Vereinbarung drucken</button>
 </div>
-		</fieldset>
-	</form>
+                </fieldset>
+        </form>
 </div>
 
 <script>
-	function addArbeitsmittel() {
+        function addArbeitsmittel() {
   const tmpl = document.querySelector('.arbeitsmittel-gruppe');
   const clone = tmpl.cloneNode(true);
   // Leere Felder
   clone.querySelectorAll('input').forEach(i => i.value = '');
   document.getElementById('arbeitsmittel-container').appendChild(clone);
+}
+
+function toggleSimFields() {
+  const check = document.getElementById('sim_check');
+  const fields = document.getElementById('sim_fields');
+  fields.style.display = check.checked ? 'block' : 'none';
 }
 </script>
