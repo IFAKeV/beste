@@ -23,21 +23,7 @@ if ($EmployeeID !== '') {
 }
 
 ?>
-<div class="ifak-formular-container">
-<!--
-	<form id="zugangsdatenformular" class="ifak-formular" action="<?php echo $_SERVER['PHP_SELF']; ?>?main=zugangsdaten_pdf" method="post">
-		<fieldset id="Zugangsdaten">
-			<h1>Zugangsdaten</h1>
-			<input type="hidden" name="EmployeeID" value="<?php echo $EmployeeID; ?>">
-			<label for="Mobile">Name:</label> <input type="text" name="Name" value="<?php echo $line['FirstName'].' '.$line['LastName']; ?>"><br>
-			<label for="Mail">EMail:</label> <input type="text" name="Mail" value="<?php echo $line['Mail']; ?>"> PW: <input type="text" name="mailpassword"><br>
-			<label for="Mail">Google-Account:</label> <input type="text" name="GoogleAccount" value="<?php echo str_replace('@ifak-bochum.de', '@bildungsnetz-nrw.de', $line['Mail']); ?>"> PW: <input type="text" name="googlepassword"><br>
-			<label for="Mail">EMail:</label> <input type="text" name="SecondMail"> PW: <input type="text" name="secondmailpassword"><br>
-			<div align="right"><button type="submit">Zugangsdaten drucken</button></div>
-		</fieldset>
-	</form>
--->
-	
+<div class="ifak-formular-container">	
 	<form id="zugangsdatenformular" class="ifak-formular" action="<?php echo $_SERVER['PHP_SELF']; ?>?main=zugangsdaten_pdf" method="post">
 	  <fieldset>
 	    <h1>Zugangsdaten</h1>
@@ -123,51 +109,53 @@ if ($EmployeeID !== '') {
 			
 		    <div id="arbeitsmittel-container">
 			
-		    <div class="arbeitsmittel-gruppe form-block">
-				<div class="form-row">
-					<label for="arbeitsmittel">Arbeitsmittel:</label>
-					<input type="text" name="arbeitsmittel[]" placeholder="Arbeitsmittel">
-	    		</div>
-	    		<div class="form-row">
-					<label for="hersteller">Hersteller/Typ:</label>
-					 <input type="text" name="hersteller[]" placeholder="Hersteller/Typ">
-	    		</div>
-				<div class="form-row">
-					<label for="seriennummer">Seriennummer:</label>
-					<input type="text" name="seriennummer[]" placeholder="Seriennummer">
-	    		</div>
-				<div class="form-row">
-					<label for="kennzeichnung">Kennzeichnung:</label>
-					<input type="text" name="kennzeichnung[]" placeholder="Kennzeichnung">
-	    		</div>
+			    <div class="arbeitsmittel-gruppe form-block">
+					<div class="form-row">
+						<label for="arbeitsmittel">Arbeitsmittel:</label>
+						<input type="text" name="arbeitsmittel[]" placeholder="Arbeitsmittel">
+		    		</div>
+		    		<div class="form-row">
+						<label for="hersteller">Hersteller/Typ:</label>
+						 <input type="text" name="hersteller[]" placeholder="Hersteller/Typ">
+		    		</div>
+					<div class="form-row">
+						<label for="seriennummer">Seriennummer:</label>
+						<input type="text" name="seriennummer[]" placeholder="Seriennummer">
+		    		</div>
+					<div class="form-row">
+						<label for="kennzeichnung">Kennzeichnung:</label>
+						<input type="text" name="kennzeichnung[]" placeholder="Kennzeichnung">
+		    		</div>
+	            </div>
+            </div>
+            <div class="form-block">
+                <div class="form-row">
+                        <input type="checkbox" id="sim_check" name="sim_check" onclick="toggleSimFields()">
+                        <label for="sim_check">mit SIM-Karte</label>
+                </div>
+                <div id="sim_fields" style="display:none;">
+					<div class="form-block">
+	                    <div class="form-row">
+	                            <label for="sim_phone">Telefonnummer:</label>
+	                            <input type="text" id="sim_phone" name="sim_phone">
+	                    </div>
+	                    <div class="form-row">
+	                            <label for="sim_pin">PIN:</label>
+	                            <input type="text" id="sim_pin" name="sim_pin">
+	                    </div>
+					</div>
+                    <div class="form-row">
+                            <input type="checkbox" id="sim_export" name="sim_export" value="1">
+                            <label for="sim_export">In Adressbuch übernehmen</label>
                     </div>
-                    </div>
-                    <div class="form-block">
-                        <div class="form-row">
-                                <input type="checkbox" id="sim_check" name="sim_check" onclick="toggleSimFields()">
-                                <label for="sim_check">mit SIM-Karte</label>
-                        </div>
-                        <div id="sim_fields" style="display:none;">
-                                <div class="form-row">
-                                        <label for="sim_phone">Telefonnummer:</label>
-                                        <input type="text" id="sim_phone" name="sim_phone">
-                                </div>
-                                <div class="form-row">
-                                        <label for="sim_pin">PIN:</label>
-                                        <input type="text" id="sim_pin" name="sim_pin">
-                                </div>
-                                <div class="form-row">
-                                        <input type="checkbox" id="sim_export" name="sim_export" value="1">
-                                        <label for="sim_export">In Adressbuch übernehmen</label>
-                                </div>
-                        </div>
-                    </div>
-<div style="display: flex; justify-content: space-between; gap: 1rem; margin-top: 1rem;">
-    <button type="button" onclick="addArbeitsmittel()">+ weiteres Arbeitsmittel</button>
-    <button type="submit">Vereinbarung drucken</button>
-</div>
-                </fieldset>
-        </form>
+                </div>
+            </div>
+			<div style="display: flex; justify-content: space-between; gap: 1rem; margin-top: 1rem;">
+			    <button type="button" onclick="addArbeitsmittel()">+ weiteres Arbeitsmittel</button>
+			    <button type="submit">Vereinbarung drucken</button>
+			</div>
+        </fieldset>
+    </form>
 </div>
 
 <script>
