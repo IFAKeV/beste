@@ -164,7 +164,8 @@ if ($simExport && !empty($_POST['sim_phone'])) {
     $entry = [
         'name' => $_POST['Name'] ?? '',
         'phone' => $_POST['sim_phone'],
-        'pin' => $_POST['sim_pin'] ?? ''
+        'pin' => $_POST['sim_pin'] ?? '',
+        'timestamp' => date('c')
     ];
     $jsonFile = 'simcards.json';
     $jsonData = [];
