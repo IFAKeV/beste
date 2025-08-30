@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bestes IFAK Adressbuch</title>
     <link rel="shortcut icon" href="favicon.ico">
-    <link rel="stylesheet" href="styles.css?v=18">
+    <link rel="stylesheet" href="styles.css?v=19">
 </head>
 <body>
     <header>
@@ -84,7 +84,7 @@
 	        <a target="_blank" href="https://intercare-pflege.de"><img src="img/InterCare-Logo.png" alt="Intercare GmbH" class="company-logo"></a>
 		</div>
     </footer>
-    <script src="script.js?v=9"></script>
+    <script src="script.js?v=10"></script>
     <script>
         // Fokussiert das Suchfeld, sobald die Seite geladen ist
         document.addEventListener('DOMContentLoaded', function() {
