@@ -70,6 +70,9 @@ function renderData(filterType = 'all', languageFilter = null, languageLevelFilt
     if (filterType === 'all' || filterType === 'location') {
         filteredData = filteredData.concat(data.locations);
     }
+    if (filterType === 'all' || filterType === 'department') {
+        filteredData = filteredData.concat(data.departments);
+    }
 
     console.log("Filtered data:", filteredData);
 
@@ -117,6 +120,13 @@ function filterAndRenderData(searchTerm, filterType, languageFilter = null, lang
             const address = location.address || '';
             return name.toLowerCase().includes(searchTerm) ||
                 address.toLowerCase().includes(searchTerm);
+        }));
+    }
+
+    if (filterType === 'all' || filterType === 'department') {
+        filteredData = filteredData.concat(data.departments.filter(department => {
+            const name = department.name || '';
+            return name.toLowerCase().includes(searchTerm);
         }));
     }
 
@@ -206,8 +216,13 @@ function renderCards(filteredData, languageFilter = null, languageLevelFilter = 
             details += `Standort: ${getLocationName(item.location)}`;
             card = createCard('facility', item.name, details, item, item.department);
 //             card = createCard('facility', item.name, , item);
-        } else {
+        } else if (item.hasOwnProperty('address')) {
             card = createCard('location', item.name, item.address, item);
+        } else {
+            const facilities = getFacilitiesInDepartment(item.id);
+            const persons = getPersonsInDepartment(item.id);
+            const details = `${facilities.length} Einrichtungen / ${persons.length} Personen`;
+            card = createCard('department', item.name, details, item, item.id);
         }
         mosaic.appendChild(card);
     });
@@ -224,6 +239,9 @@ function createCard(type, title, details, fullData, departmentId = null) {
     `;
     if ((type === 'person' || type === 'facility') && departmentId) {
         const color = getDepartmentColor(departmentId);
+        card.style.borderRight = `8px solid ${color}`;
+    } else if (type === 'department') {
+        const color = fullData.color || getDepartmentColor(fullData.id);
         card.style.borderRight = `8px solid ${color}`;
     }
     card.addEventListener('click', () => showDetails(type, fullData));
@@ -426,16 +444,36 @@ function showDetails(type, itemData) {
 			        detailsHtml += `<p>Adresse: <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(itemData.address)}" target="_blank">${itemData.address}</a></p>`;
 			    }
 			
-			    const facilitiesInLocation = getFacilitiesInLocation(itemData.id);
+                        const facilitiesInLocation = getFacilitiesInLocation(itemData.id);
 			
 			    if (facilitiesInLocation && facilitiesInLocation.length > 0) {
 			        detailsHtml += `<h3>Einrichtungen/Projekte:</h3>
 			        <ul>${facilitiesInLocation.map(f => `<li><a href="#" data-type="facility" data-id="${f.id}">${f.name}</a></li>`).join('')}</ul>`;
-			    } else {
-			        detailsHtml += `<p>Keine Einrichtungen an diesem Standort.</p>`;
-			    }
-			
-			    break;
+                            } else {
+                                detailsHtml += `<p>Keine Einrichtungen an diesem Standort.</p>`;
+                            }
+
+                            break;
+        case 'department':
+
+                            detailsHtml = `
+                                <h2>Fachbereich</h2>
+                                <h1>${itemData.name}</h1>
+                            `;
+
+                            const facilitiesInDepartment = getFacilitiesInDepartment(itemData.id);
+                            if (facilitiesInDepartment && facilitiesInDepartment.length > 0) {
+                                detailsHtml += `<h3>Einrichtungen/Projekte:</h3>`;
+                                detailsHtml += `<ul>${facilitiesInDepartment.map(f => `<li><a href="#" data-type="facility" data-id="${f.id}">${f.name}</a></li>`).join('')}</ul>`;
+                            }
+
+                            const personsInDepartment = getPersonsInDepartment(itemData.id);
+                            if (personsInDepartment && personsInDepartment.length > 0) {
+                                detailsHtml += `<h3>Mitarbeitende:</h3>`;
+                                detailsHtml += `<ul>${personsInDepartment.map(p => `<li><a href="#" data-type="person" data-id="${p.id}">${p.name}</a></li>`).join('')}</ul>`;
+                            }
+
+                            break;
     }
 
     content.innerHTML = detailsHtml;
@@ -454,7 +492,7 @@ function showDetails(type, itemData) {
 
 
     // Hintergrundfarbe basierend auf dem Typ einstellen
-    content.classList.remove('person-modal', 'facility-modal', 'location-modal');
+    content.classList.remove('person-modal', 'facility-modal', 'location-modal', 'department-modal');
     if (type === 'person') {
         content.classList.add('person-modal');
         if (departmentIds.length > 0) {
@@ -473,6 +511,13 @@ function showDetails(type, itemData) {
         }
     } else if (type === 'location') {
         content.classList.add('location-modal');
+    } else if (type === 'department') {
+        content.classList.add('department-modal');
+        if (itemData.color) {
+            content.style.borderRight = `8px solid ${itemData.color}`;
+        } else {
+            content.style.borderRight = '';
+        }
     }
 
     
@@ -496,6 +541,9 @@ function showDetails(type, itemData) {
                         break;
                     case 'location':
                         newItemData = data.locations.find(l => l.id === clickedId);
+                        break;
+                    case 'department':
+                        newItemData = data.departments.find(d => d.id === clickedId);
                         break;
                 }
                 if (newItemData) {
@@ -557,6 +605,17 @@ function getPersonsInFacility(facilityId) {
             return null;
         }
     }).filter(entry => entry !== null);
+}
+
+function getFacilitiesInDepartment(departmentId) {
+    return data.facilities.filter(f => f.department === departmentId);
+}
+
+function getPersonsInDepartment(departmentId) {
+    return data.persons.filter(person => {
+        const departments = person.department ? [person.department] : getPersonDepartments(person);
+        return departments.includes(departmentId);
+    });
 }
 
 function getFacilitiesInLocation(locationId) {

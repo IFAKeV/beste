@@ -34,6 +34,7 @@
                     <option value="person">Personen</option>
                     <option value="facility">Einrichtungen</option>
                     <option value="location">Standorte</option>
+                    <option value="department">Fachbereiche</option>
                 </select>
             </div>
         </div>
