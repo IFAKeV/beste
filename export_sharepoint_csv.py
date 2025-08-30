@@ -8,10 +8,6 @@ expected SharePoint import format.
 Example output:
     SiteUrl,Title,Owners,Folders
     https://tenant.sharepoint.com/sites/Department1,Department1,admin@tenant|department1-owner@tenant,"Facility01|Facility02|Facility03"
-
-The database itself is not included for privacy reasons, but its schema
-is available in ``ifak.db.sql``. The script assumes the schema matches the
-provided definition.
 """
 
 from __future__ import annotations
@@ -90,7 +86,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--base-url",
-        default="https://tenant.sharepoint.com/sites",
+        default="https://ifakbochum.sharepoint.com/sites/",
         help="Base URL for SharePoint sites",
     )
     parser.add_argument(
