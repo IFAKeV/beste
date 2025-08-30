@@ -178,6 +178,19 @@ function renderCards(filteredData, languageFilter = null, languageLevelFilter = 
             if (phones.length > 0) {
                 details += phones.join(' / ') + '<br>';
             }
+            if (item.languages && item.languages.length > 0) {
+                const maxBadges = 3;
+                let badgeHtml = '<div class="language-badges">';
+                const badges = item.languages.slice(0, maxBadges).map(lang =>
+                    `<a href="#" data-filter="language" data-value="${lang.name}" class="language-badge">${lang.name.slice(0,2).toUpperCase()}</a>`
+                ).join('');
+                badgeHtml += badges;
+                if (item.languages.length > maxBadges) {
+                    badgeHtml += `<span class="language-badge">+${item.languages.length - maxBadges}</span>`;
+                }
+                badgeHtml += '</div>';
+                details += badgeHtml;
+            }
 
             const departmentIds = item.department ? [item.department] : getPersonDepartments(item);
 
@@ -656,6 +669,16 @@ document.querySelector('.search-bar').addEventListener('input', (e) => {
 document.getElementById('filterType').addEventListener('change', (e) => {
     const searchTerm = document.querySelector('.search-bar').value.toLowerCase();
     filterAndRenderData(searchTerm, e.target.value);
+});
+
+document.getElementById('dataMosaic').addEventListener('click', (e) => {
+    const target = e.target.closest('[data-filter="language"]');
+    if (target) {
+        e.preventDefault();
+        const clickedLanguage = target.dataset.value || target.textContent;
+        renderData('person', clickedLanguage);
+        updateFilterDisplay(clickedLanguage, null);
+    }
 });
 
 document.querySelector('.close').addEventListener('click', () => {

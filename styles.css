@@ -158,6 +158,12 @@ ul.languages {
     font-size: 12px;
     background-color: #e0e0e0;
 }
+.language-badge {
+    display:inline-block;
+    margin:2px; padding:2px 4px;
+    font-size:10px; border-radius:3px;
+    background:#e0e0e0; cursor:pointer;
+}
 
 .certified {
     border: 1px solid green;
