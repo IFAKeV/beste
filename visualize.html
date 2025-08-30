@@ -14,26 +14,34 @@
 </style>
 <div class="grid" id="grid"></div>
 <script>
+// CSV-Text in Objekte umwandeln und dabei die Zeilenposition speichern
 function parseCSV(text){
-  const lines = text.replace(/\r/g,'').split('\n').filter(l=>l.trim().length);
-  const head = lines.shift().split(',');
-  const rows = lines.map(l=>{
-    // naive Split, reicht hier, weil Folders/Owners ohne Komma sind
+  const lines = text.replace(/\r/g,'').split('\n').filter(l=>l.trim().length); // Zeilen bereinigen
+  const head = lines.shift().split(','); // Erste Zeile: Spaltennamen
+  const rows = lines.map((l, idx)=>{
+    // Naiver Split, ausreichend weil Folders/Owners keine Kommata enthalten
     const cols = l.split(',');
     const obj = {};
     head.forEach((h,i)=>obj[h.trim()] = (cols[i]||'').trim());
+    obj.__index = idx; // Originalreihenfolge merken
     return obj;
   });
   return rows;
 }
+
+// Karten rendern und optional nach Suchbegriff filtern
 function render(rows, q=''){
   const grid = document.getElementById('grid');
   grid.innerHTML='';
   const needle = q.toLowerCase();
+
+  // Nach gespeicherter Reihenfolge sortieren, um CSV-Order zu erhalten
+  rows.sort((a,b)=> (a.__index ?? 0) - (b.__index ?? 0));
+
   rows.forEach(r=>{
-    const folders = (r.Folders||'').split('|').map(s=>s.trim()).filter(Boolean);
+    const folders = (r.Folders||'').split('|').map(s=>s.trim()).filter(Boolean); // Ordnerliste
     const hay = (r.SiteUrl+' '+r.Title+' '+folders.join(' ')).toLowerCase();
-    if(needle && !hay.includes(needle)) return;
+    if(needle && !hay.includes(needle)) return; // Filter anwenden
 
     const card = document.createElement('div'); card.className='card';
     const title = document.createElement('div'); title.className='title'; title.textContent = r.Title || '(ohne Titel)';
@@ -48,15 +56,22 @@ function render(rows, q=''){
     `;
 */
     const ul = document.createElement('ul');
-    folders.forEach(f=>{ const li=document.createElement('li'); li.textContent=f; ul.appendChild(li); });
+    folders.forEach(f=>{ // Ordner als Listeneinträge anfügen
+      const li=document.createElement('li');
+      li.textContent=f;
+      ul.appendChild(li);
+    });
 
     card.append(title,url,meta,ul);
-    grid.appendChild(card);
+    grid.appendChild(card); // Karte in Grid einsetzen
   });
 }
-let data=[];
-const fileInput = document.getElementById('file');
-const searchInput = document.getElementById('q');
+
+let data=[]; // Globale Datenbasis
+const fileInput = document.getElementById('file'); // Optionales Datei-Upload-Feld
+const searchInput = document.getElementById('q'); // Optionales Suchfeld
+
+// CSV-Datei aus Dateiupload laden
 if(fileInput){
   fileInput.addEventListener('change', async (e)=>{
     const f = e.target.files[0];
@@ -66,11 +81,13 @@ if(fileInput){
     render(data, searchInput ? searchInput.value : '');
   });
 }
+
+// Live-Suche über die bereits geladenen Daten
 if(searchInput){
   searchInput.addEventListener('input', (e)=>render(data, e.target.value));
 }
 
-// automatisch vorhandene departments.csv laden
+// Automatisch vorhandene departments.csv laden
 async function loadDefaultCSV(){
   try{
     const resp = await fetch('departments.csv');
