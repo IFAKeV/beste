@@ -67,4 +67,19 @@ document.getElementById('file').addEventListener('change', async (e)=>{
   render(data, document.getElementById('q').value);
 });
 document.getElementById('q').addEventListener('input', (e)=>render(data, e.target.value));
+
+// automatisch vorhandene departments.csv laden
+async function loadDefaultCSV(){
+  try{
+    const resp = await fetch('departments.csv');
+    if(resp.ok){
+      const text = await resp.text();
+      data = parseCSV(text);
+      render(data, document.getElementById('q').value);
+    }
+  }catch(err){
+    console.warn('departments.csv konnte nicht geladen werden', err);
+  }
+}
+loadDefaultCSV();
 </script>
