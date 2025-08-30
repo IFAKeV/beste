@@ -235,8 +235,15 @@ ul.languages {
     .department-columns {
         flex-direction: row;
     }
-    .department-column {
-        flex: 1;
+    .department-column.facilities-column {
+        flex: 0 0 40%;
+    }
+    .department-column.employees-column {
+        flex: 0 0 60%;
+    }
+    .department-column.employees-column ul {
+        column-count: 2;
+        column-gap: 20px;
     }
 }
 
