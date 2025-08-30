@@ -279,6 +279,13 @@ footer .exports {
     list-style: none;
     padding: 0;
 }
+footer .language-filter {
+    text-align: center;
+}
+footer .language-filter a {
+    color: #777;
+    margin: 0 5px;
+}
 .logo-container {
     display: flex;
     justify-content: space-around; /* Logos gleichmäßig über die Breite verteilen */

@@ -76,14 +76,15 @@
 	        <div class="right">
 	            Export: <a href="<?php echo $_SERVER['PHP_SELF']; ?>?main=phonelist">Telefonliste</a> / <a href="<?php echo $_SERVER['PHP_SELF']; ?>?main=phonelist&amp;show=all">Telefonliste (lang)</a> / <a href="<?php echo $_SERVER['PHP_SELF']; ?>?main=list">Mitarbeitendenliste</a> : <a href="<?php echo $_SERVER['PHP_SELF']; ?>?main=vz">VZ</a>
 	        </div>
-	    </div>
+            </div>
+        <div class="language-filter" id="languageFooter"></div>
         <div class="logo-container">
-	        <a target="_blank" href="https://ifak-bochum.de"><img src="img/IFAK-Logo.svg" alt="IFAK e.V." class="company-logo"></a>
-	        <a target="_blank" href="https://ifak-bochum.de/fachbereich-fruehkindliche-bildung/"><img src="img/IFAK-Kindergarten-Logo.png" alt="IFAK Kindergarten e.V." class="company-logo"></a>
-	        <a target="_blank" href="https://frauenzentrum-dortmund.de"><img src="img/Frauenzentrum-Logo.png" alt="Frauenzentrum Dortmund" class="company-logo"></a>
-	        <a target="_blank" href="https://institut-dinx.de"><img src="img/DINX-Logo.png" alt="Institut DINX" class="company-logo"></a>
-	        <a target="_blank" href="https://intercare-pflege.de"><img src="img/InterCare-Logo.png" alt="Intercare GmbH" class="company-logo"></a>
-		</div>
+                <a target="_blank" href="https://ifak-bochum.de"><img src="img/IFAK-Logo.svg" alt="IFAK e.V." class="company-logo"></a>
+                <a target="_blank" href="https://ifak-bochum.de/fachbereich-fruehkindliche-bildung/"><img src="img/IFAK-Kindergarten-Logo.png" alt="IFAK Kindergarten e.V." class="company-logo"></a>
+                <a target="_blank" href="https://frauenzentrum-dortmund.de"><img src="img/Frauenzentrum-Logo.png" alt="Frauenzentrum Dortmund" class="company-logo"></a>
+                <a target="_blank" href="https://institut-dinx.de"><img src="img/DINX-Logo.png" alt="Institut DINX" class="company-logo"></a>
+                <a target="_blank" href="https://intercare-pflege.de"><img src="img/InterCare-Logo.png" alt="Intercare GmbH" class="company-logo"></a>
+                </div>
     </footer>
     <script src="script.js?v=14"></script>
     <script>
