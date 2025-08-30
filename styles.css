@@ -188,6 +188,10 @@ ul.languages {
     background-color: #B2D8B2; /* Light Green */
 }
 
+.department-card {
+    background-color: #E6C9F5; /* Pastelllila */
+}
+
 /* Hintergrundfarben für das Modal basierend auf dem Typ */
 .modal-content.person-modal {
     background-color: #add8e6; /* Pastellblau für Personen */
@@ -199,6 +203,10 @@ ul.languages {
 
 .modal-content.location-modal {
     background-color: #B2D8B2; /* Light Green für Standorte */
+}
+
+.modal-content.department-modal {
+    background-color: #E6C9F5; /* Pastelllila für Fachbereiche */
 }
 
 /* Optionale Stile für den Modalinhalt, um die Lesbarkeit sicherzustellen */
