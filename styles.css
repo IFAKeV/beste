@@ -163,11 +163,6 @@ ul.languages {
     border: 1px solid green;
 }
 
-.department-label {
-    font-weight: bold;
-    float: right;
-}
-
 /* Anzeige des aktuellen Filters */
 #currentFilter {
     margin-bottom: 10px;

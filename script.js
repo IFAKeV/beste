@@ -170,10 +170,6 @@ function renderCards(filteredData, languageFilter = null, languageLevelFilter = 
             }
 
             const departmentIds = item.department ? [item.department] : getPersonDepartments(item);
-            if (departmentIds.length > 0) {
-                const deptNames = departmentIds.map(id => getDepartmentName(id)).join(', ');
-                details += `<span class="department-label">${deptNames}</span>`;
-            }
 
             card = createCard('person', item.name, details, item, departmentIds[0]);
         } else if (item.hasOwnProperty('location')) {
@@ -208,7 +204,7 @@ function renderCards(filteredData, languageFilter = null, languageLevelFilter = 
                 details += phones.join(' / ') + '<br>';
             }
             details += `Standort: ${getLocationName(item.location)}`;
-            card = createCard('facility', item.name, details, item);
+            card = createCard('facility', item.name, details, item, item.department);
 //             card = createCard('facility', item.name, , item);
         } else {
             card = createCard('location', item.name, item.address, item);
@@ -226,7 +222,7 @@ function createCard(type, title, details, fullData, departmentId = null) {
         <div class="card-title">${title}</div>
         <div class="card-details">${details}</div>
     `;
-    if (type === 'person' && departmentId) {
+    if ((type === 'person' || type === 'facility') && departmentId) {
         const color = getDepartmentColor(departmentId);
         card.style.borderRight = `8px solid ${color}`;
     }
@@ -469,6 +465,12 @@ function showDetails(type, itemData) {
         }
     } else if (type === 'facility') {
         content.classList.add('facility-modal');
+        if (departmentIds.length > 0) {
+            const color = getDepartmentColor(departmentIds[0]);
+            content.style.borderRight = `8px solid ${color}`;
+        } else {
+            content.style.borderRight = '';
+        }
     } else if (type === 'location') {
         content.classList.add('location-modal');
     }
