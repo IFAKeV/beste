@@ -22,6 +22,7 @@ async function loadData() {
             data.departments = [];
         }
         console.log("Data loaded successfully:", data);
+        populateLanguageFooter();
         renderData();
     } catch (error) {
         console.error('Error loading data:', error);
@@ -50,6 +51,21 @@ function updateHeaderWords() {
         word1Element.classList.remove('fade-out');
         word2Element.classList.remove('fade-out');
     }, 2000); // Wartezeit entspricht der CSS-Transition-Dauer
+}
+
+function populateLanguageFooter() {
+    const footer = document.getElementById('languageFooter');
+    if (!footer) return;
+    const languages = new Set();
+    data.persons.forEach(person => {
+        if (person.languages) {
+            person.languages.forEach(lang => languages.add(lang.name));
+        }
+    });
+    const links = Array.from(languages)
+        .sort()
+        .map(lang => `<a href="#" data-filter="language" data-value="${lang}">${lang}</a>`);
+    footer.innerHTML = links.join(' | ');
 }
 
 function renderData(filterType = 'all', languageFilter = null, languageLevelFilter = null) {
@@ -672,6 +688,16 @@ document.getElementById('filterType').addEventListener('change', (e) => {
 });
 
 document.getElementById('dataMosaic').addEventListener('click', (e) => {
+    const target = e.target.closest('[data-filter="language"]');
+    if (target) {
+        e.preventDefault();
+        const clickedLanguage = target.dataset.value || target.textContent;
+        renderData('person', clickedLanguage);
+        updateFilterDisplay(clickedLanguage, null);
+    }
+});
+
+document.getElementById('languageFooter').addEventListener('click', (e) => {
     const target = e.target.closest('[data-filter="language"]');
     if (target) {
         e.preventDefault();
