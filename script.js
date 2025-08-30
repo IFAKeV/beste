@@ -502,13 +502,13 @@ function showDetails(type, itemData) {
                                 detailsHtml += `<div class="department-columns">`;
 
                                 if (facilitiesInDepartment && facilitiesInDepartment.length > 0) {
-                                    detailsHtml += `<div class="department-column"><h3>Einrichtungen</h3><ul>${facilitiesInDepartment
+                                    detailsHtml += `<div class="department-column facilities-column"><h3>Einrichtungen</h3><ul>${facilitiesInDepartment
                                         .map(f => `<li><a href="#" data-type="facility" data-id="${f.id}">${f.name}</a></li>`)
                                         .join('')}</ul></div>`;
                                 }
 
                                 if (personsInDepartment && personsInDepartment.length > 0) {
-                                    detailsHtml += `<div class="department-column"><h3>Mitarbeitende</h3><ul>${personsInDepartment
+                                    detailsHtml += `<div class="department-column employees-column"><h3>Mitarbeitende</h3><ul>${personsInDepartment
                                         .map(p => `<li><a href="#" data-type="person" data-id="${p.id}">${p.name}</a></li>`)
                                         .join('')}</ul></div>`;
                                 }
