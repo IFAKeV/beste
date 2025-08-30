@@ -14,19 +14,17 @@
 </style>
 <div class="grid" id="grid"></div>
 <script>
-// CSV-Text in Objekte umwandeln und dabei die Zeilenposition speichern
+// CSV-Text in Objekte umwandeln
 function parseCSV(text){
   const lines = text.replace(/\r/g,'').split('\n').filter(l=>l.trim().length); // Zeilen bereinigen
   const head = lines.shift().split(','); // Erste Zeile: Spaltennamen
-  const rows = lines.map((l, idx)=>{
+  return lines.map(l=>{
     // Naiver Split, ausreichend weil Folders/Owners keine Kommata enthalten
     const cols = l.split(',');
     const obj = {};
     head.forEach((h,i)=>obj[h.trim()] = (cols[i]||'').trim());
-    obj.__index = idx; // Originalreihenfolge merken
     return obj;
   });
-  return rows;
 }
 
 // Karten rendern und optional nach Suchbegriff filtern
@@ -34,9 +32,6 @@ function render(rows, q=''){
   const grid = document.getElementById('grid');
   grid.innerHTML='';
   const needle = q.toLowerCase();
-
-  // Nach gespeicherter Reihenfolge sortieren, um CSV-Order zu erhalten
-  rows.sort((a,b)=> (a.__index ?? 0) - (b.__index ?? 0));
 
   rows.forEach(r=>{
     const folders = (r.Folders||'').split('|').map(s=>s.trim()).filter(Boolean); // Ordnerliste
