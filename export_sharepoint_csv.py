@@ -22,17 +22,20 @@ from typing import Iterable, List
 def fetch_departments(cursor: sqlite3.Cursor) -> Iterable[sqlite3.Row]:
     """Return all departments.
 
-    The returned rows expose the columns ``DepartmentID`` and ``Short``
-    (short name) as defined in ``ifak.db.sql``.
+    The returned rows expose the columns ``DepartmentID``, ``Short`` and
+    ``Department`` (voller Name) wie in ``ifak.db.sql`` definiert.
     """
 
-    cursor.execute("SELECT DepartmentID, Short FROM Departments ORDER BY Short")
+    cursor.execute(
+        "SELECT DepartmentID, Short, Department FROM Departments ORDER BY Short"
+    )
     return cursor.fetchall()
 
 
 def fetch_facilities(cursor: sqlite3.Cursor, department_id: int) -> List[str]:
     """Return facility names associated with a department."""
 
+    # Alle Einrichtungen (Facilities) zur Abteilung abfragen
     cursor.execute(
         "SELECT Facility FROM Facilities WHERE DepartmentID = ? ORDER BY Facility",
         (department_id,),
@@ -63,12 +66,14 @@ def fetch_owners(
         (department_id, role_name),
     )
     rows = cursor.fetchall()
+    # Eindeutige Besitzer anhand der Rolle ermitteln
     return [row["mail"] for row in rows]
 
 
 def build_site_url(base_url: str, short_name: str) -> str:
     """Construct the SharePoint site URL for a department."""
 
+    # Basis-URL bereinigen und Kurzname anhängen
     return f"{base_url.rstrip('/')}/{short_name}"
 
 
@@ -117,18 +122,25 @@ def main() -> None:
         writer.writerow(["SiteUrl", "Title", "Owners", "Folders"])
 
         for dept in departments:
+            # Auslesen der notwendigen Felder aus dem Datensatz
             dept_id = dept["DepartmentID"]
-            short = dept["Short"]
+            short = dept["Short"]  # Kurzbezeichnung der Abteilung
+            title = dept["Department"]  # Voller Name für den SharePoint-Titel
 
+            # URL für die SharePoint-Seite zusammensetzen (Short wird verwendet)
             site_url = build_site_url(args.base_url, short)
+
+            # Besitzer (Owners) der Seite ermitteln
             owners = fetch_owners(cursor, dept_id, args.owner_role)
             owners.extend(args.extra_owner)
             owners_field = "|".join(owners)
 
+            # Zugeordnete Einrichtungen (Folders) ermitteln
             facilities = fetch_facilities(cursor, dept_id)
             folders_field = "|".join(facilities)
 
-            writer.writerow([site_url, short, owners_field, folders_field])
+            # Datensatz in die CSV schreiben
+            writer.writerow([site_url, title, owners_field, folders_field])
 
     conn.close()
 
