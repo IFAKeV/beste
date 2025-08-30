@@ -361,11 +361,6 @@ function showDetails(type, itemData) {
                                 </ul>`;
                             }
 
-                            if (departmentIds.length > 0) {
-                                const deptNames = departmentIds.map(id => getDepartmentName(id)).join(', ');
-                                detailsHtml += `<p>Fachbereich: ${deptNames}</p>`;
-                            }
-            
             break;
             case 'facility':
             
@@ -405,11 +400,16 @@ function showDetails(type, itemData) {
 			    });
 			    personsHtml += '</ul>';
 
-			    detailsHtml = `
-			        <h2>Einrichtung / Projekt</h2>
-			        <h1>${itemData.name}</h1>
-			        <p>Standort: <a href="#" data-type="location" data-id="${itemData.location}">${getLocationName(itemData.location)}</a></p>
-			    `;
+                            detailsHtml = `
+                                <h2>Einrichtung / Projekt</h2>
+                                <h1>${itemData.name}</h1>
+                                <p>Standort: <a href="#" data-type="location" data-id="${itemData.location}">${getLocationName(itemData.location)}</a></p>
+                            `;
+
+                            if (departmentIds.length > 0) {
+                                const deptNames = departmentIds.map(id => getDepartmentName(id)).join(', ');
+                                detailsHtml += `<p>Fachbereich: ${deptNames}</p>`;
+                            }
 			
 			    if (itemData.phone) {
 			        detailsHtml += `<p>Telefon: <a href="tel:${itemData.phone}">${formattedPhone}</a></p>`;
