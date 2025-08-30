@@ -20,14 +20,16 @@ from typing import Iterable, List
 
 
 def fetch_departments(cursor: sqlite3.Cursor) -> Iterable[sqlite3.Row]:
-    """Return all departments.
+    """Return all departments ordered by their IDs.
 
     The returned rows expose the columns ``DepartmentID``, ``Short`` and
-    ``Department`` (voller Name) wie in ``ifak.db.sql`` definiert.
+    ``Department`` (voller Name) wie in ``ifak.db.sql`` definiert. Ordering by
+    ``DepartmentID`` ensures the generated CSV follows the database's natural
+    department sequence.
     """
 
     cursor.execute(
-        "SELECT DepartmentID, Short, Department FROM Departments ORDER BY Short"
+        "SELECT DepartmentID, Short, Department FROM Departments ORDER BY DepartmentID"
     )
     return cursor.fetchall()
 
