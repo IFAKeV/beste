@@ -1,0 +1,70 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>SharePoint-Struktur – Visualisierung</title>
+<style>
+  body{font:14px system-ui,Segoe UI,Roboto,Arial,sans-serif;margin:20px}
+  header{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+  .card{border:1px solid #ddd;border-radius:12px;padding:12px}
+  .title{font-weight:600;margin-bottom:4px}
+  .url{font-size:12px;color:#555;margin-bottom:8px;word-break:break-all}
+  .tag{display:inline-block;background:#eef;padding:2px 8px;border-radius:999px;font-size:12px;margin-right:6px}
+  ul{margin:8px 0 0 18px}
+  input[type="search"]{padding:6px 8px;border:1px solid #ccc;border-radius:8px;min-width:280px}
+  .muted{color:#666;font-size:12px}
+</style>
+<header>
+  <input id="file" type="file" accept=".csv">
+  <input id="q" type="search" placeholder="Suche: Site/Ordner …">
+  <span class="muted">CSV-Schema: SiteUrl,Title,Owners,Folders,Template,StorageGB,TimeZone</span>
+</header>
+<div class="grid" id="grid"></div>
+<script>
+function parseCSV(text){
+  const lines = text.replace(/\r/g,'').split('\n').filter(l=>l.trim().length);
+  const head = lines.shift().split(',');
+  const rows = lines.map(l=>{
+    // naive Split, reicht hier, weil Folders/Owners ohne Komma sind
+    const cols = l.split(',');
+    const obj = {};
+    head.forEach((h,i)=>obj[h.trim()] = (cols[i]||'').trim());
+    return obj;
+  });
+  return rows;
+}
+function render(rows, q=''){
+  const grid = document.getElementById('grid');
+  grid.innerHTML='';
+  const needle = q.toLowerCase();
+  rows.forEach(r=>{
+    const folders = (r.Folders||'').split('|').map(s=>s.trim()).filter(Boolean);
+    const hay = (r.SiteUrl+' '+r.Title+' '+folders.join(' ')).toLowerCase();
+    if(needle && !hay.includes(needle)) return;
+
+    const card = document.createElement('div'); card.className='card';
+    const title = document.createElement('div'); title.className='title'; title.textContent = r.Title || '(ohne Titel)';
+    const url = document.createElement('div'); url.className='url'; url.textContent = r.SiteUrl || '';
+    const meta = document.createElement('div'); 
+    meta.innerHTML = `
+      <span class="tag">${r.Template||'STS#3'}</span>
+      <span class="tag">${r.StorageGB||'Default'} GB</span>
+      <span class="tag">${(r.Owners||'').split('|').length} Owner</span>
+      <span class="tag">${folders.length} Ordner</span>
+    `;
+    const ul = document.createElement('ul');
+    folders.forEach(f=>{ const li=document.createElement('li'); li.textContent=f; ul.appendChild(li); });
+
+    card.append(title,url,meta,ul);
+    grid.appendChild(card);
+  });
+}
+let data=[];
+document.getElementById('file').addEventListener('change', async (e)=>{
+  const f = e.target.files[0];
+  if(!f) return;
+  const text = await f.text();
+  data = parseCSV(text);
+  render(data, document.getElementById('q').value);
+});
+document.getElementById('q').addEventListener('input', (e)=>render(data, e.target.value));
+</script>
