@@ -169,12 +169,13 @@ function renderCards(filteredData, languageFilter = null, languageLevelFilter = 
                 details += phones.join(' / ') + '<br>';
             }
 
-            if (item.department) {
-                const deptName = getDepartmentName(item.department);
-                details += `<span class="department-label">${deptName}</span>`;
+            const departmentIds = item.department ? [item.department] : getPersonDepartments(item);
+            if (departmentIds.length > 0) {
+                const deptNames = departmentIds.map(id => getDepartmentName(id)).join(', ');
+                details += `<span class="department-label">${deptNames}</span>`;
             }
 
-            card = createCard('person', item.name, details, item, item.department);
+            card = createCard('person', item.name, details, item, departmentIds[0]);
         } else if (item.hasOwnProperty('location')) {
             let details = '';
 
@@ -260,10 +261,12 @@ function showDetails(type, itemData) {
     if (itemData.mobile) {
         formattedMobile = itemData.mobile.slice(0, 4) + '/' + itemData.mobile.slice(4);
     }
- 	let formattedFax='';
+    let formattedFax='';
     if (itemData.fax) {
         formattedFax = formatPhoneNumber(itemData.fax);
     }
+
+    const departmentIds = itemData.department ? [itemData.department] : getPersonDepartments(itemData);
 
     switch(type) {
         case 'person':
@@ -344,10 +347,11 @@ function showDetails(type, itemData) {
                                 </ul>`;
                             }
 
-                            if (itemData.department) {
-                                detailsHtml += `<p>Fachbereich: ${getDepartmentName(itemData.department)}</p>`;
+                            if (departmentIds.length > 0) {
+                                const deptNames = departmentIds.map(id => getDepartmentName(id)).join(', ');
+                                detailsHtml += `<p>Fachbereich: ${deptNames}</p>`;
                             }
-			
+            
             break;
             case 'facility':
             
@@ -457,8 +461,8 @@ function showDetails(type, itemData) {
     content.classList.remove('person-modal', 'facility-modal', 'location-modal');
     if (type === 'person') {
         content.classList.add('person-modal');
-        if (itemData.department) {
-            const color = getDepartmentColor(itemData.department);
+        if (departmentIds.length > 0) {
+            const color = getDepartmentColor(departmentIds[0]);
             content.style.borderRight = `8px solid ${color}`;
         } else {
             content.style.borderRight = '';
@@ -523,6 +527,19 @@ function getDepartmentName(id) {
 
 function getDepartmentColor(id) {
     return data.departments.find(d => d.id === id)?.color || '#888';
+}
+
+function getPersonDepartments(person) {
+    if (!person || !person.facilities) {
+        return [];
+    }
+    const departmentIds = person.facilities
+        .map(ref => {
+            const facility = data.facilities.find(f => f.id === ref.facilityId);
+            return facility ? facility.department : null;
+        })
+        .filter(id => id !== null && id !== undefined);
+    return Array.from(new Set(departmentIds));
 }
 
 function getPersonsInFacility(facilityId) {
