@@ -3,7 +3,6 @@
 <title>SharePoint-Struktur – Visualisierung</title>
 <style>
   body{font:14px system-ui,Segoe UI,Roboto,Arial,sans-serif;margin:20px}
-  header{display:flex;gap:12px;align-items:center;margin-bottom:12px}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
   .card{border:1px solid #ddd;border-radius:12px;padding:12px}
   .title{font-weight:600;margin-bottom:4px}
@@ -54,14 +53,20 @@ function render(rows, q=''){
   });
 }
 let data=[];
-document.getElementById('file').addEventListener('change', async (e)=>{
-  const f = e.target.files[0];
-  if(!f) return;
-  const text = await f.text();
-  data = parseCSV(text);
-  render(data, document.getElementById('q').value);
-});
-document.getElementById('q').addEventListener('input', (e)=>render(data, e.target.value));
+const fileInput = document.getElementById('file');
+const searchInput = document.getElementById('q');
+if(fileInput){
+  fileInput.addEventListener('change', async (e)=>{
+    const f = e.target.files[0];
+    if(!f) return;
+    const text = await f.text();
+    data = parseCSV(text);
+    render(data, searchInput ? searchInput.value : '');
+  });
+}
+if(searchInput){
+  searchInput.addEventListener('input', (e)=>render(data, e.target.value));
+}
 
 // automatisch vorhandene departments.csv laden
 async function loadDefaultCSV(){
@@ -70,7 +75,7 @@ async function loadDefaultCSV(){
     if(resp.ok){
       const text = await resp.text();
       data = parseCSV(text);
-      render(data, document.getElementById('q').value);
+      render(data, searchInput ? searchInput.value : '');
     }
   }catch(err){
     console.warn('departments.csv konnte nicht geladen werden', err);
