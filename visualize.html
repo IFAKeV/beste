@@ -38,13 +38,15 @@ function render(rows, q=''){
     const card = document.createElement('div'); card.className='card';
     const title = document.createElement('div'); title.className='title'; title.textContent = r.Title || '(ohne Titel)';
     const url = document.createElement('div'); url.className='url'; url.textContent = r.SiteUrl || '';
-    const meta = document.createElement('div'); 
+    const meta = document.createElement('div');
+/*
     meta.innerHTML = `
       <span class="tag">${r.Template||'STS#3'}</span>
       <span class="tag">${r.StorageGB||'Default'} GB</span>
       <span class="tag">${(r.Owners||'').split('|').length} Owner</span>
       <span class="tag">${folders.length} Ordner</span>
     `;
+*/
     const ul = document.createElement('ul');
     folders.forEach(f=>{ const li=document.createElement('li'); li.textContent=f; ul.appendChild(li); });
 
