@@ -436,8 +436,10 @@ function showDetails(type, itemData) {
                             `;
 
                             if (departmentIds.length > 0) {
-                                const deptNames = departmentIds.map(id => getDepartmentName(id)).join(', ');
-                                detailsHtml += `<p>Fachbereich: ${deptNames}</p>`;
+                                const deptLinks = departmentIds
+                                    .map(id => `<a href="#" data-type="department" data-id="${id}">${getDepartmentName(id)}</a>`)
+                                    .join(', ');
+                                detailsHtml += `<p>Fachbereich: ${deptLinks}</p>`;
                             }
 			
 			    if (itemData.phone) {
@@ -491,15 +493,27 @@ function showDetails(type, itemData) {
                             `;
 
                             const facilitiesInDepartment = getFacilitiesInDepartment(itemData.id);
-                            if (facilitiesInDepartment && facilitiesInDepartment.length > 0) {
-                                detailsHtml += `<h3>Einrichtungen/Projekte:</h3>`;
-                                detailsHtml += `<ul>${facilitiesInDepartment.map(f => `<li><a href="#" data-type="facility" data-id="${f.id}">${f.name}</a></li>`).join('')}</ul>`;
-                            }
-
                             const personsInDepartment = getPersonsInDepartment(itemData.id);
-                            if (personsInDepartment && personsInDepartment.length > 0) {
-                                detailsHtml += `<h3>Mitarbeitende:</h3>`;
-                                detailsHtml += `<ul>${personsInDepartment.map(p => `<li><a href="#" data-type="person" data-id="${p.id}">${p.name}</a></li>`).join('')}</ul>`;
+
+                            if (
+                                (facilitiesInDepartment && facilitiesInDepartment.length > 0) ||
+                                (personsInDepartment && personsInDepartment.length > 0)
+                            ) {
+                                detailsHtml += `<div class="department-columns">`;
+
+                                if (facilitiesInDepartment && facilitiesInDepartment.length > 0) {
+                                    detailsHtml += `<div class="department-column"><h3>Einrichtungen</h3><ul>${facilitiesInDepartment
+                                        .map(f => `<li><a href="#" data-type="facility" data-id="${f.id}">${f.name}</a></li>`)
+                                        .join('')}</ul></div>`;
+                                }
+
+                                if (personsInDepartment && personsInDepartment.length > 0) {
+                                    detailsHtml += `<div class="department-column"><h3>Mitarbeitende</h3><ul>${personsInDepartment
+                                        .map(p => `<li><a href="#" data-type="person" data-id="${p.id}">${p.name}</a></li>`)
+                                        .join('')}</ul></div>`;
+                                }
+
+                                detailsHtml += `</div>`;
                             }
 
                             break;
@@ -550,7 +564,7 @@ function showDetails(type, itemData) {
     }
 
     
-    modal.style.display = "block";
+    modal.style.display = "flex";
 
 
     // Event-Listener für die Links innerhalb des Modals

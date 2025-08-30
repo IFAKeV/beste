@@ -102,17 +102,19 @@ ul.languages {
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
     background-color: rgba(0,0,0,0.4);
+    justify-content: center;
+    align-items: center;
 }
 
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto;
     padding: 20px;
     border: 1px solid #444;
     width: 80%;
     max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
     z-index: 2000; /* Damit das Fenster über anderen Elementen liegt */
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -213,6 +215,29 @@ ul.languages {
 
 .modal-content.department-modal {
     background-color: #E6C9F5; /* Pastelllila für Fachbereiche */
+    width: 90%;
+    max-width: 90%;
+}
+
+.department-columns {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.department-column ul {
+    list-style-type: circle;
+    margin-left: 0;
+    padding-left: 1.2em;
+}
+
+@media (min-width: 768px) {
+    .department-columns {
+        flex-direction: row;
+    }
+    .department-column {
+        flex: 1;
+    }
 }
 
 /* Optionale Stile für den Modalinhalt, um die Lesbarkeit sicherzustellen */
