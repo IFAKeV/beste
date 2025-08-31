@@ -13,7 +13,7 @@ const word2List = [
 async function loadData() {
     try {
         console.log("Attempting to load data...");
-        const response = await fetch('ifak.json');
+        const response = await fetch(`ifak.json?${Date.now()}`, { cache: 'no-store' });
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
