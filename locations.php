@@ -47,9 +47,10 @@ try {
     <h1>Standorte verwalten</h1>
     <p class="menu">
         <a href="add_location.php">Neuen Standort hinzufügen</a> | 
-		<a href="employees.php">Mitarbeitende verwalten</a> | 
-        <a href="facilities.php">Einrichtungen verwalten</a> | 
-        <a href="languages.php">Sprachen verwalten</a> | 
+        <a href="employees.php">Mitarbeitende verwalten</a> |
+        <a href="facilities.php">Einrichtungen verwalten</a> |
+        <a href="departments.php">Fachbereiche verwalten</a> |
+        <a href="languages.php">Sprachen verwalten</a> |
         <a href="roles.php">Rollen verwalten</a>
     </p>
 
