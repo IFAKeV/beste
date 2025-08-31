@@ -180,10 +180,10 @@ while ($lrow = $lresults->fetchArray(SQLITE3_ASSOC)) {
 				// Farbe für Leitungen und andere wichtige Personen				
 				// Farbdefinitionen zentral in einem Array
 				$roleColors = [
-				    1 => [255, 200, 100],   // Leitung / Standard-Orange
-				    3 => [255, 200, 100],    // Vorsitzende / Standard-Orange
-				    4 => [255, 200, 100],    // SGeschäftsführerin / tandard-Orange
-				    2 => [255, 230, 150],  // Stellvertretende Leitung / Helleres Orange
+				    1 => [193, 231, 208],   // Leitung
+				    3 => [193, 231, 208],   // Vorsitzende
+				    4 => [193, 231, 208],   // Geschäftsführerin
+				    2 => [245, 245, 220],   // Stellvertretende Leitung
 				    // Zukünftige Werte einfach hier ergänzen
 				];
 				// Farbe auswählen (falls nicht vorhanden: Standardweiß)
