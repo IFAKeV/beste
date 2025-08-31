@@ -98,10 +98,11 @@ try {
 		}
 	?>
     <p class="menu">
-        <a href="add_employee.php">Neue:n Mitarbeiter:in hinzufügen</a> | 
-        <a href="facilities.php">Einrichtungen verwalten</a> | 
-        <a href="locations.php">Standorte verwalten</a> | 
-        <a href="languages.php">Sprachen verwalten</a> | 
+        <a href="add_employee.php">Neue:n Mitarbeiter:in hinzufügen</a> |
+        <a href="facilities.php">Einrichtungen verwalten</a> |
+        <a href="locations.php">Standorte verwalten</a> |
+        <a href="departments.php">Fachbereiche verwalten</a> |
+        <a href="languages.php">Sprachen verwalten</a> |
         <a href="roles.php">Rollen verwalten</a>
     </p>
     <form method="post" action="run_sqlite2json_script.php">

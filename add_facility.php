@@ -42,12 +42,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ?>
     <!DOCTYPE html>
     <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Neue Einrichtung hinzufügen</title>
-    </head>
-    <body>
-        <h1>Neue Einrichtung hinzufügen</h1>
+<head>
+    <meta charset="UTF-8">
+    <title>Neue Einrichtung hinzufügen</title>
+    <style>
+        a {
+            text-decoration: none;
+            color: #469cda;
+        }
+        .menu a {
+            color: darkorange;
+        }
+    </style>
+</head>
+<body>
+    <h1>Neue Einrichtung hinzufügen</h1>
+    <p class="menu">
+        <a href="employees.php">Mitarbeitende verwalten</a> |
+        <a href="facilities.php">Einrichtungen verwalten</a> |
+        <a href="locations.php">Standorte verwalten</a> |
+        <a href="departments.php">Fachbereiche verwalten</a> |
+        <a href="languages.php">Sprachen verwalten</a> |
+        <a href="roles.php">Rollen verwalten</a>
+    </p>
         <form method="post" action="add_facility.php">
             <label for="LocationID">Standort:</label><br>
             <select name="LocationID" id="LocationID" required>
@@ -86,7 +103,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <input type="submit" value="Speichern">
         </form>
-        <p><a href="facilities.php">Zurück zur Einrichtungsübersicht</a></p>
     </body>
     </html>
     <?php

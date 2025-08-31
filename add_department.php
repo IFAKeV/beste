@@ -22,14 +22,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ?>
     <!DOCTYPE html>
     <html>
-    <head>
-        <meta charset="UTF-8">
+<head>
+    <meta charset="UTF-8">
         <title>Neuen Fachbereich hinzufügen</title>
-    </head>
+        <style>
+            a {
+                text-decoration: none;
+                color: #469cda;
+            }
+            .menu a {
+                color: darkorange;
+            }
+        </style>
+</head>
     <body>
         <h1>Neuen Fachbereich hinzufügen</h1>
+        <p class="menu">
+            <a href="employees.php">Mitarbeitende verwalten</a> |
+            <a href="facilities.php">Einrichtungen verwalten</a> |
+            <a href="locations.php">Standorte verwalten</a> |
+            <a href="departments.php">Fachbereiche verwalten</a> |
+            <a href="languages.php">Sprachen verwalten</a> |
+            <a href="roles.php">Rollen verwalten</a>
+        </p>
         <?php if (!empty($error)): ?>
-            <p style="color: red;"><?= htmlspecialchars($error) ?></p>
+            <p style="color: red;"> <?= htmlspecialchars($error) ?></p>
         <?php endif; ?>
         <form method="post" action="add_department.php">
             <label for="Department">Bezeichnung:</label><br>
@@ -43,7 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <input type="submit" value="Speichern">
         </form>
-        <p><a href="departments.php">Zurück zur Fachbereichsliste</a></p>
     </body>
     </html>
     <?php
