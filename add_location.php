@@ -30,14 +30,31 @@ echo 'Hallo';
     ?>
     <!DOCTYPE html>
     <html>
-    <head>
-        <meta charset="UTF-8">
+<head>
+    <meta charset="UTF-8">
         <title>Neuen Standort hinzufügen</title>
-    </head>
+        <style>
+            a {
+                text-decoration: none;
+                color: #469cda;
+            }
+            .menu a {
+                color: darkorange;
+            }
+        </style>
+</head>
     <body>
         <h1>Neuen Standort hinzufügen</h1>
+        <p class="menu">
+            <a href="employees.php">Mitarbeitende verwalten</a> |
+            <a href="facilities.php">Einrichtungen verwalten</a> |
+            <a href="locations.php">Standorte verwalten</a> |
+            <a href="departments.php">Fachbereiche verwalten</a> |
+            <a href="languages.php">Sprachen verwalten</a> |
+            <a href="roles.php">Rollen verwalten</a>
+        </p>
         <?php if (!empty($error)): ?>
-            <p style="color: red;"><?= htmlspecialchars($error) ?></p>
+            <p style="color: red;"> <?= htmlspecialchars($error) ?></p>
         <?php endif; ?>
         <form method="post" action="add_location.php">
             <label for="Location">Bezeichnung:</label><br>
@@ -57,7 +74,6 @@ echo 'Hallo';
 
             <input type="submit" value="Speichern">
         </form>
-        <p><a href="locations.php">Zurück zur Standortliste</a></p>
     </body>
     </html>
     <?php
