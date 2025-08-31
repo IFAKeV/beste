@@ -85,7 +85,9 @@ if(searchInput){
 // Automatisch vorhandene departments.csv laden
 async function loadDefaultCSV(){
   try{
-    const resp = await fetch('departments.csv');
+    // Cache-Busting: immer aktuelle CSV laden
+    const url = `departments.csv?cachebust=${Date.now()}`;
+    const resp = await fetch(url, {cache: 'no-store'});
     if(resp.ok){
       const text = await resp.text();
       data = parseCSV(text);
