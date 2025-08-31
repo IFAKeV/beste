@@ -57,9 +57,10 @@ try {
     <h1>Einrichtungen verwalten</h1>
 	<p class="menu">
         <a href="add_facility.php">Neue Einrichtung hinzufügen</a> | 
-        <a href="employees.php">Mitarbeitende verwalten</a> | 
-        <a href="locations.php">Standorte verwalten</a> | 
-        <a href="languages.php">Sprachen verwalten</a> | 
+        <a href="employees.php">Mitarbeitende verwalten</a> |
+        <a href="locations.php">Standorte verwalten</a> |
+        <a href="departments.php">Fachbereiche verwalten</a> |
+        <a href="languages.php">Sprachen verwalten</a> |
         <a href="roles.php">Rollen verwalten</a>
     </p>
 
