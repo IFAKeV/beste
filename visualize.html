@@ -51,9 +51,31 @@ function render(rows, q=''){
     `;
 */
     const ul = document.createElement('ul');
-    folders.forEach(f=>{ // Ordner als Listeneinträge anfügen
-      const li=document.createElement('li');
-      li.textContent=f;
+
+    // Eine zusätzliche Hierarchieebene für Ordner erlauben
+    const tree = {};
+    folders.forEach(p=>{
+      const m = p.match(/^([^\[]+)(?:\[([^\]]*)\])?/); // Root und optionale Subordner
+      if(!m) return;
+      const root = m[1].trim();
+      const subs = (m[2]||'').split(';').map(s=>s.trim()).filter(Boolean);
+      if(!root) return;
+      if(!tree[root]) tree[root] = new Set();
+      subs.forEach(s=>tree[root].add(s));
+    });
+
+    Object.entries(tree).forEach(([root, subs])=>{
+      const li = document.createElement('li');
+      li.textContent = root;
+      if(subs.size){
+        const subUl = document.createElement('ul');
+        subs.forEach(s=>{
+          const subLi = document.createElement('li');
+          subLi.textContent = s;
+          subUl.appendChild(subLi);
+        });
+        li.appendChild(subUl);
+      }
       ul.appendChild(li);
     });
 
