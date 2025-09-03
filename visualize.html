@@ -64,6 +64,11 @@ function render(rows, q=''){
       subs.forEach(s=>tree[root].add(s));
     });
 
+    // Anzahl der Ordner erster und zweiter Ebene ermitteln
+    const rootCount = Object.keys(tree).length;
+    const subCount = Object.values(tree).reduce((sum, set)=> sum + set.size, 0);
+    title.textContent = `${r.Title || '(ohne Titel)'} (${rootCount}/${subCount})`;
+
     Object.entries(tree).forEach(([root, subs])=>{
       const li = document.createElement('li');
       li.textContent = root;
